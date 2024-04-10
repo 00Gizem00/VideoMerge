@@ -1,0 +1,40 @@
+Error occurred: module 'PIL.Image' has no attribute 'ANTIALIAS'
+Traceback (most recent call last):
+  File "c:\Users\Shiyu\OneDrive\Desktop\VideoMerge\video_merger.py", line 13, in merge_videos
+    video_clips = [clip.resize((min_width, min_height)) for clip in video_clips]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\video\fx\resize.py", line 152, in resize
+    newclip = clip.fl_image(fl)
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\video\VideoClip.py", line 490, in fl_image
+    return self.fl(lambda gf, t: image_func(gf(t)), apply_to)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\Clip.py", line 136, in fl
+    newclip = self.set_make_frame(lambda t: fun(self.get_frame, t))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-61>", line 2, in set_make_frame
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\decorators.py", line 14, in outplace
+    f(newclip, *a, **k)
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\video\VideoClip.py", line 644, in set_make_frame
+    self.size = self.get_frame(0).shape[:2][::-1]
+                ^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-11>", line 2, in get_frame
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\decorators.py", line 89, in wrapper
+    return f(*new_a, **new_kw)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\Clip.py", line 93, in get_frame
+    return self.make_frame(t)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\Clip.py", line 136, in <lambda>
+    newclip = self.set_make_frame(lambda t: fun(self.get_frame, t))
+                                            ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\video\VideoClip.py", line 490, in <lambda>
+    return self.fl(lambda gf, t: image_func(gf(t)), apply_to)
+                                 ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\video\fx\resize.py", line 150, in <lambda>
+    fl = lambda pic: resizer(pic.astype('uint8'), newsize)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\videoenv\Lib\site-packages\moviepy\video\fx\resize.py", line 37, in resizer
+    resized_pil = pilim.resize(newsize[::-1], Image.ANTIALIAS)
+                                              ^^^^^^^^^^^^^^^
+AttributeError: module 'PIL.Image' has no attribute 'ANTIALIAS'
