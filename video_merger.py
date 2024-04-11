@@ -1,8 +1,8 @@
 import os
-import subprocess
+from moviepy.editor import *
 
 
-klasor = input("Klasör yolunu girin: ")
+klasor = input("Birleştirelecek videoların klasör yolunu girin: ")
 
 
 print("Klasördeki dosyalar:")
@@ -17,25 +17,25 @@ secilenler = [int(index) for index in secilenler.split()]
 
 secilen_dosyalar = [dosyalar[index - 1] for index in secilenler]
 
-
 birlesmis_dosya = 'birlesmis_dosya.mp4'
+where_output_folder = os.path.dirname(birlesmis_dosya)
 
-
-with open('concat_list.txt', 'w') as f:
-    for dosya in secilen_dosyalar:
-        dosya_yolu = os.path.join(klasor, dosya)
-        f.write(f"file '{dosya_yolu}'" + '\n')
-
-
-ffmpeg_cmd = ['ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', 'concat_list.txt', '-c', 'copy', birlesmis_dosya]
-process = subprocess.run(ffmpeg_cmd, stderr=subprocess.PIPE)
-
-# Hataları log dosyasına yaz
+# Log dosyası
 with open('ffmpeg_error.log', 'a') as f:
-    f.write(process.stderr.decode())
+    f.write("")
+
+video_clips = []
+for dosya in secilen_dosyalar:
+    dosya_yolu = os.path.join(klasor, dosya)
+    video_clips.append(VideoFileClip(dosya_yolu))
 
 
-os.remove('concat_list.txt')
-
-print(f"Videolar birleştirildi ve '{birlesmis_dosya}' adında bir dosya oluşturuldu.")
+try:
+    final_clip = concatenate_videoclips(video_clips, method="compose")
+    final_clip.write_videofile(birlesmis_dosya, )
+    print(f"Videolar birleştirildi ve '{birlesmis_dosya}' adında bir dosya oluşturuldu. Dosyanın yer aldığı klasör: '{where_output_folder}'")
+except Exception as e:
+    with open('ffmpeg_error.log', 'a') as f:
+        f.write(str(e) + "\n")
+    print("Bir hata oluştu. Detaylar 'ffmpeg_error.log' dosyasında bulunabilir.")
 
