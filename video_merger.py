@@ -1,9 +1,9 @@
-from multiprocessing import process
 import subprocess
 import os
 
-# arparse veya click modulunde python etc. yazmadan klasor dizilimi nasil aliniyor kullanicidan bulamadim ya da yazdiktan sonra.
-# glob modulune bir bakalim.
+# Bu kismi bir kullanici yapacak gibi yaptim. developer kullanacaksa daha farkli olabilir.
+# kullanici icin arparse veya click modulunde python etc. yazmadan klasor dizilimi nasil aliniyor kullanicidan bulamadim ya da yazdiktan sonra.
+# glob modulune bir bakalim. 
 def option_input():
     print("[1] Video Birleştirme\n")
     print("[0] Çıkış\n")
@@ -53,8 +53,9 @@ def hedef_cozunurluk_input():
 
 # command input ta alinabilir ffmpeg icin. birlestirirken efekt vb. eklemek icin 
 # yine birlestirilecek dosya ismi de alinabilir. yapmistim zaten moviepy kullandigimda. bunda da olabilir.
+# output dosya ismi alinacak.
 def videoları_birlestir(klasor, secilen_dosyalar, hedef_cozunurluk):
-    log_file = open('ffmpeg.log', 'a')  # Log dosyasını aç
+    log_file = open('ffmpeg.log', 'a')  
     try:
         for video in secilen_dosyalar:
             video_path = os.path.join(klasor, video)
@@ -63,7 +64,7 @@ def videoları_birlestir(klasor, secilen_dosyalar, hedef_cozunurluk):
 
             
             process = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-            log_file.write(process.stdout)  # Çıktıyı log dosyasına yaz
+            log_file.write(process.stdout) 
 
         
         with open('video_list.txt', 'w') as f:
@@ -83,6 +84,7 @@ def videoları_birlestir(klasor, secilen_dosyalar, hedef_cozunurluk):
     finally:
         log_file.close()
 
+# Farkli dosyalara alinalabilir. ama basit bir ornek icin bu kadar.
 
 if __name__ == '__main__':
     option = option_input()
