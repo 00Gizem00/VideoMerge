@@ -1,95 +1,60 @@
+import argparse
 import subprocess
 import os
+import glob
 
-# Bu kismi bir kullanici yapacak gibi yaptim. developer kullanacaksa daha farkli olabilir.
-# kullanici icin arparse veya click modulunde python etc. yazmadan klasor dizilimi nasil aliniyor kullanicidan bulamadim ya da yazdiktan sonra.
-# glob modulune bir bakalim. 
-def option_input():
-    print("[1] Video Birleştirme\n")
-    print("[0] Çıkış\n")
-    option = input("Seçenek: ")
-    if option not in ["0", "1"]:
-        print("Hata: Geçersiz seçenek.")
-        return option_input()
-    if option == "0":
-        exit()
-    if option == "1":
-        return 
-    return klasor
+def get_parser():
+    parser = argparse.ArgumentParser(description='Select and merge video files from a directory.')
+    parser.add_argument('-d', '--directory', type=str, required=True, help='Directory path of video files')
+    parser.add_argument('-v', '--videos', nargs='+', help='Names of video files to be merged')
+    parser.add_argument('-r', '--resolution', type=str, help='Target resolution (e.g., 1920x1080)')
+    parser.add_argument('-o', '--output', type=str, default='merged_video.mp4', help='Name of the merged video file')
+    return parser
 
+def list_videos(directory):
+    if os.path.isdir(directory):
+        print(f"Video files in {directory}:")
+        videos = []
+        for extension in ('*.mp4', '*.avi', '*.mkv'):
+            for filepath in glob.glob(os.path.join(directory, extension)):
+                videos.append(filepath)
+                print(os.path.basename(filepath))
+        return videos
+    else:
+        print(f"{directory} is not a valid directory path.")
 
-def klasor_input():
-    klasor = input("Birleştirelecek videoların klasör yolunu girin: ")
-    if not os.path.isdir(klasor):
-        print("Hata: Klasör bulunamadı.")
-        return klasor_input()
-    return klasor
-
-def video_dosyalarini_goruntule(klasor):
-    print("Klasördeki dosyalar:")
-    dosyalar = os.listdir(klasor)
-    for i, dosya in enumerate(dosyalar, start=1):
-        print(f"{i}. {dosya}")
-    return dosyalar
-
-def secilen_dosyalari_al(dosyalar):
-    secilenler = input("Seçmek istediğiniz dosyaların numaralarını aralarında boşluk bırakarak girin (örn: 1 3 5): ")
-    if len(secilenler) < 3:
-        print("Hata: En az iki dosya seçmelisiniz.")
-        return secilen_dosyalari_al(dosyalar)
-    if not secilenler.replace(" ", "").isdigit():
-        print("Hata: Lütfen sadece sayı giriniz.")
-        return secilen_dosyalari_al(dosyalar)
-    secilenler = [int(index) for index in secilenler.split()]
-    secilen_dosyalar = [dosyalar[index - 1] for index in secilenler]
-    return secilen_dosyalar
-
-def hedef_cozunurluk_input():
-    hedef_cozunurluk = input("Hedef çözünürlüğü girin (örn: 1920x1080): ")
-    if not hedef_cozunurluk.replace("x", "").isdigit():
-        print("Hata: Geçersiz çözünürlük.")
-        return hedef_cozunurluk_input()
-    return hedef_cozunurluk
-
-# command input ta alinabilir ffmpeg icin. birlestirirken efekt vb. eklemek icin 
-# yine birlestirilecek dosya ismi de alinabilir. yapmistim zaten moviepy kullandigimda. bunda da olabilir.
-# output dosya ismi alinacak.
-def videoları_birlestir(klasor, secilen_dosyalar, hedef_cozunurluk):
-    log_file = open('ffmpeg.log', 'a')  
+def merge_videos(directory, video_names, resolution, output_filename):
+    log_file = open('ffmpeg.log', 'a') 
     try:
-        for video in secilen_dosyalar:
-            video_path = os.path.join(klasor, video)
-            output_video = f"{video}_converted.mp4"
-            cmd = ['ffmpeg', '-i', video_path, '-vf', f'scale={hedef_cozunurluk}', '-c:a', 'copy', output_video]
-
-            
+        converted_files = []
+        for video in video_names:
+            input_path = os.path.join(directory, video)
+            output_path = os.path.join(directory, f"{video}_converted.mp4")
+            cmd = ['ffmpeg', '-i', input_path, '-vf', f'scale={resolution}', '-c:a', 'copy', output_path]
             process = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-            log_file.write(process.stdout) 
-
+            log_file.write(process.stdout)
+            converted_files.append(output_path)
+        
         
         with open('video_list.txt', 'w') as f:
-            for video in secilen_dosyalar:
-                f.write(f"file '{video}_converted.mp4'\n")
-
-        concat_cmd = ['ffmpeg', '-f', 'concat', '-safe', '0', '-i', 'video_list.txt', '-c', 'copy', 'birlesmis_video.mp4']
+            for file_path in converted_files:
+                f.write(f"file '{file_path}'\n")
+        
+        concat_cmd = ['ffmpeg', '-f', 'concat', '-safe', '0', '-i', 'video_list.txt', '-c', 'copy', output_filename]
         process = subprocess.run(concat_cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
         log_file.write(process.stdout)
 
-        # İşlenmiş videoları temizle
-        os.remove('video_list.txt')
-        for video in secilen_dosyalar:
-            os.remove(f'{video}_converted.mp4')
-
-        print("Videolar birleştirildi ve 'birlesmis_video.mp4' adında bir dosya oluşturuldu.")
+        print(f"Videos have been successfully merged into {output_filename}")
     finally:
         log_file.close()
-
-# Farkli dosyalara alinalabilir. ama basit bir ornek icin bu kadar.
+        os.remove('video_list.txt')
+        for file_path in converted_files:
+            os.remove(file_path)
 
 if __name__ == '__main__':
-    option = option_input()
-    klasor = klasor_input()
-    dosyalar = video_dosyalarini_goruntule(klasor)
-    secilen_dosyalar = secilen_dosyalari_al(dosyalar)
-    hedef_cozunurluk = hedef_cozunurluk_input()
-    videoları_birlestir(klasor, secilen_dosyalar, hedef_cozunurluk)
+    parser = get_parser()
+    args = parser.parse_args()
+    if args.videos and args.resolution:
+        merge_videos(args.directory, args.videos, args.resolution, args.output)
+    else:
+        list_videos(args.directory)

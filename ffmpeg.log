@@ -1,0 +1,218 @@
+ffmpeg version 2024-04-07-git-2d33d6bfcc-full_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-librav1e --enable-libsvtav1 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      59. 13.100 / 59. 13.100
+  libavcodec     61.  5.101 / 61.  5.101
+  libavformat    61.  3.100 / 61.  3.100
+  libavdevice    61.  2.100 / 61.  2.100
+  libavfilter    10.  2.101 / 10.  2.101
+  libswscale      8.  2.100 /  8.  2.100
+  libswresample   5.  2.100 /  5.  2.100
+  libpostproc    58.  2.100 / 58.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\video_list\video1.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.76.100
+  Duration: 00:00:02.00, start: 0.000000, bitrate: 10690 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 10444 kb/s, 60 fps, 60 tbr, 15360 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 214 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (libx264))
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+[libx264 @ 0000021d424fcc00] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0000021d424fcc00] profile High, level 4.2, 4:2:0, 8-bit
+[libx264 @ 0000021d424fcc00] 264 - core 164 r3190 7ed753b - H.264/MPEG-4 AVC codec - Copyleft 2003-2024 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=24 lookahead_threads=4 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\video_list\video1.mp4_converted.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf61.3.100
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, q=2-31, 60 fps, 15360 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.5.101 libx264
+      Side data:
+        cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+  Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 214 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+frame=    3 fps=0.0 q=31.0 size=       0KiB time=00:00:00.01 bitrate=  23.0kbits/s speed=0.0329x    
+frame=   59 fps= 58 q=31.0 size=     512KiB time=00:00:00.95 bitrate=4415.5kbits/s speed=0.939x    
+[out#0/mp4 @ 0000021d42508280] video:1344KiB audio:52KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.325307%
+frame=  120 fps= 86 q=-1.0 Lsize=    1401KiB time=00:00:01.96 bitrate=5834.7kbits/s speed=1.41x    
+[libx264 @ 0000021d424fcc00] frame I:1     Avg QP:24.98  size:122689
+[libx264 @ 0000021d424fcc00] frame P:45    Avg QP:25.66  size: 23622
+[libx264 @ 0000021d424fcc00] frame B:74    Avg QP:29.38  size:  2563
+[libx264 @ 0000021d424fcc00] consecutive B-frames:  1.7% 48.3%  0.0% 50.0%
+[libx264 @ 0000021d424fcc00] mb I  I16..4:  5.2% 77.3% 17.5%
+[libx264 @ 0000021d424fcc00] mb P  I16..4:  0.3%  1.1%  0.2%  P16..4: 37.7% 14.8%  5.3%  0.0%  0.0%    skip:40.5%
+[libx264 @ 0000021d424fcc00] mb B  I16..4:  0.0%  0.1%  0.0%  B16..8: 29.8%  0.5%  0.1%  direct: 0.1%  skip:69.4%  L0:29.4% L1:68.3% BI: 2.2%
+[libx264 @ 0000021d424fcc00] 8x8 transform intra:73.0% inter:77.9%
+[libx264 @ 0000021d424fcc00] coded y,uvDC,uvAC intra: 67.6% 53.4% 12.8% inter: 8.0% 5.9% 0.0%
+[libx264 @ 0000021d424fcc00] i16 v,h,dc,p: 34% 45%  9% 12%
+[libx264 @ 0000021d424fcc00] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 20% 30% 16%  4%  6%  7%  5%  5%  6%
+[libx264 @ 0000021d424fcc00] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 25% 36%  8%  4%  7%  6%  6%  5%  4%
+[libx264 @ 0000021d424fcc00] i8c dc,h,v,p: 51% 26% 18%  5%
+[libx264 @ 0000021d424fcc00] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0000021d424fcc00] ref P L0: 64.1% 19.6% 13.8%  2.5%
+[libx264 @ 0000021d424fcc00] ref B L0: 95.0%  4.7%  0.3%
+[libx264 @ 0000021d424fcc00] ref B L1: 98.7%  1.3%
+[libx264 @ 0000021d424fcc00] kb/s:5501.45
+ffmpeg version 2024-04-07-git-2d33d6bfcc-full_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-librav1e --enable-libsvtav1 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      59. 13.100 / 59. 13.100
+  libavcodec     61.  5.101 / 61.  5.101
+  libavformat    61.  3.100 / 61.  3.100
+  libavdevice    61.  2.100 / 61.  2.100
+  libavfilter    10.  2.101 / 10.  2.101
+  libswscale      8.  2.100 /  8.  2.100
+  libswresample   5.  2.100 /  5.  2.100
+  libpostproc    58.  2.100 / 58.  2.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\video_list\video2.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso6iso2avc1mp41
+    Hw              : 1
+    bitrate         : 0
+    maxrate         : 0
+    te_is_reencode  : 1
+    vedit_reqid     : vcloud-video_edit_web_video_v5-jianying_sg-LVDraftWeb-e0510bd54509453f9ab1a466b41828dd
+    encoder         : Lavf58.45.100
+  Duration: 00:00:15.68, start: 0.000000, bitrate: 16187 kb/s
+  Stream #0:0[0x1](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720 [SAR 1:1 DAR 16:9], 16045 kb/s, 59.82 fps, 60 tbr, 1000k tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (libx264))
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+[libx264 @ 000001e407ba5480] using SAR=1/1
+[libx264 @ 000001e407ba5480] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 000001e407ba5480] profile High, level 4.2, 4:2:0, 8-bit
+[libx264 @ 000001e407ba5480] 264 - core 164 r3190 7ed753b - H.264/MPEG-4 AVC codec - Copyleft 2003-2024 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=24 lookahead_threads=4 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'C:\Users\Shiyu\OneDrive\Desktop\VideoMerge\video_list\video2.mp4_converted.mp4':
+  Metadata:
+    minor_version   : 512
+    major_brand     : isom
+    compatible_brands: isomiso6iso2avc1mp41
+    Hw              : 1
+    bitrate         : 0
+    maxrate         : 0
+    te_is_reencode  : 1
+    vedit_reqid     : vcloud-video_edit_web_video_v5-jianying_sg-LVDraftWeb-e0510bd54509453f9ab1a466b41828dd
+    encoder         : Lavf61.3.100
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 60 fps, 15360 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.5.101 libx264
+      Side data:
+        cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+  Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+frame=   28 fps=0.0 q=31.0 size=     256KiB time=00:00:00.43 bitrate=4840.5kbits/s dup=3 drop=0 speed=0.861x    
+frame=   85 fps= 84 q=31.0 size=    1024KiB time=00:00:01.38 bitrate=6064.3kbits/s dup=3 drop=0 speed=1.36x    
+frame=  148 fps= 96 q=31.0 size=    2048KiB time=00:00:02.43 bitrate=6894.9kbits/s dup=3 drop=0 speed=1.58x    
+frame=  212 fps=103 q=31.0 size=    2560KiB time=00:00:03.50 bitrate=5992.0kbits/s dup=3 drop=0 speed= 1.7x    
+frame=  272 fps=106 q=31.0 size=    3840KiB time=00:00:04.50 bitrate=6990.6kbits/s dup=3 drop=0 speed=1.75x    
+frame=  332 fps=108 q=31.0 size=    4608KiB time=00:00:05.50 bitrate=6863.5kbits/s dup=3 drop=0 speed=1.79x    
+frame=  392 fps=109 q=31.0 size=    5120KiB time=00:00:06.50 bitrate=6452.8kbits/s dup=3 drop=0 speed=1.81x    
+frame=  465 fps=113 q=31.0 size=    5888KiB time=00:00:07.71 bitrate=6250.7kbits/s dup=3 drop=0 speed=1.88x    
+frame=  538 fps=116 q=31.0 size=    6912KiB time=00:00:08.93 bitrate=6338.5kbits/s dup=3 drop=0 speed=1.93x    
+frame=  602 fps=117 q=31.0 size=    7680KiB time=00:00:10.00 bitrate=6291.5kbits/s dup=3 drop=0 speed=1.94x    
+frame=  662 fps=117 q=31.0 size=    8448KiB time=00:00:11.00 bitrate=6291.5kbits/s dup=3 drop=0 speed=1.94x    
+frame=  722 fps=117 q=31.0 size=    8960KiB time=00:00:12.00 bitrate=6116.7kbits/s dup=3 drop=0 speed=1.94x    
+frame=  782 fps=117 q=31.0 size=    9984KiB time=00:00:13.00 bitrate=6291.5kbits/s dup=3 drop=0 speed=1.94x    
+frame=  838 fps=116 q=31.0 size=   10496KiB time=00:00:13.93 bitrate=6171.1kbits/s dup=3 drop=0 speed=1.93x    
+frame=  901 fps=117 q=31.0 size=   11520KiB time=00:00:14.98 bitrate=6298.5kbits/s dup=3 drop=0 speed=1.94x    
+[out#0/mp4 @ 000001e407b6d100] video:11707KiB audio:246KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.199573%
+frame=  941 fps=119 q=-1.0 Lsize=   11977KiB time=00:00:15.65 bitrate=6269.4kbits/s dup=3 drop=0 speed=1.98x    
+[libx264 @ 000001e407ba5480] frame I:4     Avg QP:21.56  size:248742
+[libx264 @ 000001e407ba5480] frame P:573   Avg QP:23.86  size: 18094
+[libx264 @ 000001e407ba5480] frame B:364   Avg QP:30.14  size:  1716
+[libx264 @ 000001e407ba5480] consecutive B-frames: 44.6%  8.3%  9.2% 37.8%
+[libx264 @ 000001e407ba5480] mb I  I16..4:  1.1% 80.7% 18.2%
+[libx264 @ 000001e407ba5480] mb P  I16..4:  0.0%  0.1%  0.0%  P16..4: 21.1%  9.2%  7.4%  0.0%  0.0%    skip:62.2%
+[libx264 @ 000001e407ba5480] mb B  I16..4:  0.0%  0.0%  0.0%  B16..8: 24.7%  0.3%  0.1%  direct: 0.2%  skip:74.8%  L0:41.7% L1:57.2% BI: 1.0%
+[libx264 @ 000001e407ba5480] 8x8 transform intra:80.2% inter:59.1%
+[libx264 @ 000001e407ba5480] coded y,uvDC,uvAC intra: 92.1% 84.0% 32.5% inter: 9.9% 4.7% 0.0%
+[libx264 @ 000001e407ba5480] i16 v,h,dc,p:  9% 26% 12% 53%
+[libx264 @ 000001e407ba5480] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 13% 19% 14%  7%  8%  8% 10%  9% 13%
+[libx264 @ 000001e407ba5480] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 16% 13%  9% 10% 11% 10%  9% 11% 11%
+[libx264 @ 000001e407ba5480] i8c dc,h,v,p: 45% 31% 16%  8%
+[libx264 @ 000001e407ba5480] Weighted P-Frames: Y:0.2% UV:0.2%
+[libx264 @ 000001e407ba5480] ref P L0: 76.9% 14.4%  6.5%  2.1%
+[libx264 @ 000001e407ba5480] ref B L0: 95.1%  4.1%  0.8%
+[libx264 @ 000001e407ba5480] ref B L1: 97.5%  2.5%
+[libx264 @ 000001e407ba5480] kb/s:6114.74
+ffmpeg version 2024-04-07-git-2d33d6bfcc-full_build-www.gyan.dev Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 13.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-librav1e --enable-libsvtav1 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      59. 13.100 / 59. 13.100
+  libavcodec     61.  5.101 / 61.  5.101
+  libavformat    61.  3.100 / 61.  3.100
+  libavdevice    61.  2.100 / 61.  2.100
+  libavfilter    10.  2.101 / 10.  2.101
+  libswscale      8.  2.100 /  8.  2.100
+  libswresample   5.  2.100 /  5.  2.100
+  libpostproc    58.  2.100 / 58.  2.100
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0000028d746f2940] Auto-inserting h264_mp4toannexb bitstream filter
+Input #0, concat, from 'video_list.txt':
+  Duration: N/A, start: -0.021333, bitrate: 5716 kb/s
+  Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 5504 kb/s, 60 fps, 60 tbr, 15360 tbn
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.5.101 libx264
+  Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 212 kb/s
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Output #0, mp4, to 'dense.mp4':
+  Metadata:
+    encoder         : Lavf61.3.100
+  Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, q=2-31, 5504 kb/s, 60 fps, 60 tbr, 15360 tbn
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.5.101 libx264
+  Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 212 kb/s
+      Metadata:
+        handler_name    : SoundHandler
+        vendor_id       : [0][0][0][0]
+Press [q] to stop, [?] for help
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0000028d74cf0680] Auto-inserting h264_mp4toannexb bitstream filter
+[aost#0:1/copy @ 0000028d750cac40] Non-monotonic DTS; previous: 96256, current: 88200; changing to 96257. This may result in incorrect timestamps in the output file.
+[aost#0:1/copy @ 0000028d750cac40] Non-monotonic DTS; previous: 96257, current: 89224; changing to 96258. This may result in incorrect timestamps in the output file.
+[aost#0:1/copy @ 0000028d750cac40] Non-monotonic DTS; previous: 96258, current: 90248; changing to 96259. This may result in incorrect timestamps in the output file.
+[aost#0:1/copy @ 0000028d750cac40] Non-monotonic DTS; previous: 96259, current: 91272; changing to 96260. This may result in incorrect timestamps in the output file.
+[aost#0:1/copy @ 0000028d750cac40] Non-monotonic DTS; previous: 96260, current: 92296; changing to 96261. This may result in incorrect timestamps in the output file.
+[aost#0:1/copy @ 0000028d750cac40] Non-monotonic DTS; previous: 96261, current: 93320; changing to 96262. This may result in incorrect timestamps in the output file.
+[aost#0:1/copy @ 0000028d750cac40] Non-monotonic DTS; previous: 96262, current: 94344; changing to 96263. This may result in incorrect timestamps in the output file.
+[aost#0:1/copy @ 0000028d750cac40] Non-monotonic DTS; previous: 96263, current: 95368; changing to 96264. This may result in incorrect timestamps in the output file.
+[out#0/mp4 @ 0000028d746f1380] video:13051KiB audio:298KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.188346%
+size=   13375KiB time=00:00:16.25 bitrate=6739.1kbits/s speed= 237x    
