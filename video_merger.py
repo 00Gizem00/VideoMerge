@@ -1,5 +1,22 @@
+from multiprocessing import process
+import subprocess
 import os
-from moviepy.editor import *
+
+# arparse veya click modulunde python etc. yazmadan klasor dizilimi nasil aliniyor kullanicidan bulamadim ya da yazdiktan sonra.
+# glob modulune bir bakalim.
+def option_input():
+    print("[1] Video Birleştirme\n")
+    print("[0] Çıkış\n")
+    option = input("Seçenek: ")
+    if option not in ["0", "1"]:
+        print("Hata: Geçersiz seçenek.")
+        return option_input()
+    if option == "0":
+        exit()
+    if option == "1":
+        return 
+    return klasor
+
 
 def klasor_input():
     klasor = input("Birleştirelecek videoların klasör yolunu girin: ")
@@ -17,42 +34,60 @@ def video_dosyalarini_goruntule(klasor):
 
 def secilen_dosyalari_al(dosyalar):
     secilenler = input("Seçmek istediğiniz dosyaların numaralarını aralarında boşluk bırakarak girin (örn: 1 3 5): ")
-    # if not secilenler.replace(" ", "").isdigit():
-    #     print("Hata: Lütfen sadece sayıları ve boşlukları kullanın.")
-    #     return secilen_dosyalari_al(dosyalar)
+    if len(secilenler) < 3:
+        print("Hata: En az iki dosya seçmelisiniz.")
+        return secilen_dosyalari_al(dosyalar)
+    if not secilenler.replace(" ", "").isdigit():
+        print("Hata: Lütfen sadece sayı giriniz.")
+        return secilen_dosyalari_al(dosyalar)
     secilenler = [int(index) for index in secilenler.split()]
     secilen_dosyalar = [dosyalar[index - 1] for index in secilenler]
     return secilen_dosyalar
 
-def birlestirme_dosyasi_ismi():
-    birlesmis_dosya = input("Birleştirme işlemi sonucu oluşacak dosyanın ismini girin: ") + ".mp4"
-    return birlesmis_dosya
+def hedef_cozunurluk_input():
+    hedef_cozunurluk = input("Hedef çözünürlüğü girin (örn: 1920x1080): ")
+    if not hedef_cozunurluk.replace("x", "").isdigit():
+        print("Hata: Geçersiz çözünürlük.")
+        return hedef_cozunurluk_input()
+    return hedef_cozunurluk
 
-
-def video_birlestir(klasor, secilen_dosyalar, birlesmis_dosya):
-
-    video_clips = []
-    for dosya in secilen_dosyalar:
-        dosya_yolu = os.path.join(klasor, dosya)
-        video_clips.append(VideoFileClip(dosya_yolu))
-
+# command input ta alinabilir ffmpeg icin. birlestirirken efekt vb. eklemek icin 
+# yine birlestirilecek dosya ismi de alinabilir. yapmistim zaten moviepy kullandigimda. bunda da olabilir.
+def videoları_birlestir(klasor, secilen_dosyalar, hedef_cozunurluk):
+    log_file = open('ffmpeg.log', 'a')  # Log dosyasını aç
     try:
-        final_clip = concatenate_videoclips(video_clips, method="compose")
-        final_clip.write_videofile(birlesmis_dosya)
-        where_output_folder = os.path.dirname(os.path.abspath(birlesmis_dosya))
-        print(f"Videolar birleştirildi ve '{birlesmis_dosya}' adında bir dosya oluşturuldu. Dosyanın yer aldığı klasör: '{where_output_folder}'")
-    except Exception as e:
-        with open('ffmpeg_error.log', 'a') as f:
-            f.write(str(e) + "\n")
-        print("Bir hata oluştu. Detaylar 'ffmpeg_error.log' dosyasında bulunabilir.")
+        for video in secilen_dosyalar:
+            video_path = os.path.join(klasor, video)
+            output_video = f"{video}_converted.mp4"
+            cmd = ['ffmpeg', '-i', video_path, '-vf', f'scale={hedef_cozunurluk}', '-c:a', 'copy', output_video]
 
-def main():
+            
+            process = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+            log_file.write(process.stdout)  # Çıktıyı log dosyasına yaz
+
+        
+        with open('video_list.txt', 'w') as f:
+            for video in secilen_dosyalar:
+                f.write(f"file '{video}_converted.mp4'\n")
+
+        concat_cmd = ['ffmpeg', '-f', 'concat', '-safe', '0', '-i', 'video_list.txt', '-c', 'copy', 'birlesmis_video.mp4']
+        process = subprocess.run(concat_cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        log_file.write(process.stdout)
+
+        # İşlenmiş videoları temizle
+        os.remove('video_list.txt')
+        for video in secilen_dosyalar:
+            os.remove(f'{video}_converted.mp4')
+
+        print("Videolar birleştirildi ve 'birlesmis_video.mp4' adında bir dosya oluşturuldu.")
+    finally:
+        log_file.close()
+
+
+if __name__ == '__main__':
+    option = option_input()
     klasor = klasor_input()
     dosyalar = video_dosyalarini_goruntule(klasor)
     secilen_dosyalar = secilen_dosyalari_al(dosyalar)
-    birlesmis_dosya = birlestirme_dosyasi_ismi()
-    video_birlestir(klasor, secilen_dosyalar, birlesmis_dosya)
-
-
-if __name__ == "__main__":
-    main()
+    hedef_cozunurluk = hedef_cozunurluk_input()
+    videoları_birlestir(klasor, secilen_dosyalar, hedef_cozunurluk)
