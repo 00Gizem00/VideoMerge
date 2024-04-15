@@ -23,6 +23,7 @@ def list_videos(directory):
     else:
         print(f"{directory} is not a valid directory path.")
 
+
 def merge_videos(directory, video_names, resolution, output_filename):
     log_file = open('ffmpeg.log', 'a') 
     try:
@@ -40,11 +41,14 @@ def merge_videos(directory, video_names, resolution, output_filename):
             for file_path in converted_files:
                 f.write(f"file '{file_path}'\n")
         
+        # ffmpeg commandinin de terminalde duzenlenebilir olmasi gerekiyor. burayi da argparse ile duzenleyebiliriz.
         concat_cmd = ['ffmpeg', '-f', 'concat', '-safe', '0', '-i', 'video_list.txt', '-c', 'copy', output_filename]
         process = subprocess.run(concat_cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
         log_file.write(process.stdout)
 
-        print(f"Videos have been successfully merged into {output_filename}")
+        where_outputfile = os.path.dirname(os.path.abspath(output_filename))
+
+        print(f"Videos have been successfully merged into {output_filename} and path: {where_outputfile}")
     finally:
         log_file.close()
         os.remove('video_list.txt')
