@@ -13,5 +13,5 @@ Bu scripti çalıştırmadan önce aşağıdaki araçların sisteminizde kurulu 
 Python 3.6 veya daha üstü bir sürüm  
 FFmpeg
 
-git clone [Bu_Repo'nun_URL'si]  
+git clone https://github.com/00Gizem00/VideoMerge.git    
 cd VideoMerge
